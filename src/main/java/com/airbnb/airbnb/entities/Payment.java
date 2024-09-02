@@ -1,5 +1,6 @@
 package com.airbnb.airbnb.entities;
 
+
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -18,8 +19,10 @@ public class Payment {
     private Long id;
     private LocalDate date;
     private double amout;
+    //@Enumerated(EnumType.STRING)
     private PaymentType type;
-    private PaymentStatu statu;
+    @MapKeyEnumerated(EnumType.STRING)
+    private PaymentStatus status;
     private String file;
     @ManyToOne
     private Student student;

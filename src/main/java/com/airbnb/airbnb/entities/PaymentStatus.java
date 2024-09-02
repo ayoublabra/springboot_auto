@@ -1,5 +1,5 @@
 package com.airbnb.airbnb.entities;
 
-public enum PaymentStatu {
+public enum PaymentStatus {
     CREATED,VALIDATED,REJECTED
 }

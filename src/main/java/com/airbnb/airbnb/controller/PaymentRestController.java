@@ -1,16 +1,13 @@
 package com.airbnb.airbnb.controller;
 
 import com.airbnb.airbnb.entities.Payment;
-import com.airbnb.airbnb.entities.Student;
+import com.airbnb.airbnb.entities.PaymentStatus;
+import com.airbnb.airbnb.entities.PaymentType;
 import com.airbnb.airbnb.repository.PaymentRepository;
 import com.airbnb.airbnb.repository.StudentRepository;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/payments")
@@ -30,6 +27,16 @@ public class PaymentRestController {
     @GetMapping(path = "/{id}")
     public Payment getPaymentById(@PathVariable Long id){
         return paymentRepository.findById(id).get();
+    }
+
+    @GetMapping(path = "/byStatus")
+    public List<Payment> getPaymentByStatus(@RequestParam PaymentStatus status) {
+        return paymentRepository.findByStatus(status);
+    }
+
+    @GetMapping(path = "/byType")
+    public List<Payment> getPaymentByType(@RequestParam PaymentType type) {
+        return paymentRepository.findByType(type);
     }
 
     //@GetMapping(path = "/students")
